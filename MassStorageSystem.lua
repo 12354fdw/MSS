@@ -101,11 +101,11 @@ function renderingTask()
             end
         end
         drivestats.setTextColor(colors.white)
-        drivestats.setCursorPos(2,1)
+        drivestats.setCursorPos(2,1+drivesY)
         drivestats.write("OVERALL - "..tfree.." free, "..tused.." used.")
         for i,v in pairs(displayData) do
             drivestats.setTextColor(v[2])
-            drivestats.setCursorPos(2,i)
+            drivestats.setCursorPos(2,i+drivesY)
             drivestats.write(v[1])
         end
     
