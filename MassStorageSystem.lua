@@ -95,9 +95,9 @@ function renderingTask()
                 local used = fs.getCapacity(v) - free
                 tfree = tfree + free
                 tused = tused + used
-                table.insert(displayData,{v.." - "..free.." free, "..used.." used.",color.lime})
+                table.insert(displayData,{v.." - "..free.." free, "..used.." used.",colors.lime})
             else
-                table.insert(displayData,{v.." - LOST",color.yellow})
+                table.insert(displayData,{v.." - LOST",colors.yellow})
             end
         end
         drivestats.setTextColor(colors.white)
