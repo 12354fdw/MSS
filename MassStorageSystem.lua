@@ -86,26 +86,28 @@ function renderingTask()
         
         local tfree = 0
         local tused = 0
-        local overall = 1
+        local displayData = {}
         getDisks()
         for i,v in ipairs(original) do
             drivestats.setCursorPos(2,i+drivesY)
             if table.find(drives,v) then
-                drivestats.setTextColor(colors.lime)
                 local free = fs.getFreeSpace(v)
                 local used = fs.getCapacity(v) - free
                 tfree = tfree + free
                 tused = tused + used
-                drivestats.write(v.." - "..free.." free, "..used.." used.")
+                table.insert(displayData,{v.." - "..free.." free, "..used.." used.",color.lime})
             else
-                drivestats.setTextColor(colors.yellow)
-                drivestats.write(v.." - LOST")
+                table.insert(displayData,{v.." - LOST",color.yellow})
             end
-            overall = i+1
         end
         drivestats.setTextColor(colors.white)
-        drivestats.setCursorPos(2,overall+drivesY)
+        drivestats.setCursorPos(2,1)
         drivestats.write("OVERALL - "..tfree.." free, "..tused.." used.")
+        for i,v in pairs(displayData) do
+            drivestats.setTextColor(v[2])
+            drivestats.setCursorPos(2,i)
+            drivestats.write(v[1])
+        end
     
         logshow.clear()
         logtitle.clear()
